@@ -253,3 +253,56 @@ exports.userDashboard = async(req,res) => {
         status : "ok"
     })
 }
+
+
+exports.passwordUpdate = async(req,res) => {
+
+    try{
+        const { oldPassword , newPassword } = req.body
+
+        if(!(oldPassword && newPassword)){
+
+            res.json({
+                message : "Provide all the fields",
+                status : "fail"
+            })
+
+        }
+        else{
+            const id = req.id
+
+    const user = await User.findById(id)
+
+    console.log(user)
+
+    if(!user){
+
+        res.json({
+            message : "User not found",
+            status : "fail"
+        })
+
+    }
+
+     if(await user.isPasswordValid(oldPassword , user.password)===false){
+        res.json({
+            message : "Password not matching",
+            status : "fail"
+        })
+     }
+
+     user.password = newPassword
+
+     await user.save()
+
+     res.json({
+        message : "Password Changed",
+        status : "ok"
+    })
+
+        }
+    }
+    catch(error){
+
+    }
+}
