@@ -8,7 +8,7 @@ router.route("/").get(home)
 
 
 //User Route
-router.route("/signup").get( (req,res)=>{
+router.route("/signup").post( (req,res)=>{
     res.json(req.body)
 })
 
