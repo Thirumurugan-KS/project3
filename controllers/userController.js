@@ -372,7 +372,9 @@ exports.adminModifyUser = async(req,res) => {
     
     await user.save( {validateBeforeSave : true})
 
-    res.json(user)
+    res.json({user,
+    status : "ok",
+message : "Successful"})
         }
 }
 catch(error){
@@ -381,4 +383,39 @@ catch(error){
         status : "fail"}
        )
 }
+}
+
+
+exports.adminDeleteUser = async(req,res) => {
+
+    const id = req.params.id
+
+
+    try{
+        const user = await User.findById(id)
+
+    if(!user){
+       res.json(
+        {message : "User not found",
+        status : "fail"}
+       )
+
+    }
+
+    await User.deleteOne({ _id : id })
+
+    res.json({
+        message : "deleted successfully",
+        status : "ok"
+    })
+
+}
+
+catch(error){
+    res.json(
+        {message : "User not found",
+        status : "fail"}
+       )
+}
+
 }

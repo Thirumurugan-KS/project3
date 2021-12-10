@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const {home , signUp , signIn , signOut ,
-    forgetPassword , resetForgetPassword, userDashboard,
+    forgetPassword , resetForgetPassword, userDashboard, adminDeleteUser,
     passwordUpdate , adminUsers , adminUser , adminModifyUser} = require("../controllers/userController")
     const { isLogin, isAdmin } = require("../middlewares/userMiddleware")
 //Home Route
@@ -22,5 +22,6 @@ router.route("/passwordupdate").post(isLogin , passwordUpdate)
 router.route("/admin/users").get( isLogin ,isAdmin ,adminUsers)
 router.route("/admin/user/:id").get(isLogin ,isAdmin ,adminUser)
 router.route("/admin/user/:id").post(isLogin ,isAdmin ,adminModifyUser)
+router.route("/admin/user/:id").delete(isLogin ,isAdmin ,adminDeleteUser)
 
 module.exports = router
