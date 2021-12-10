@@ -40,3 +40,23 @@ exports.addProduct = async (req,res) => {
     }
 
  }
+
+ exports.showProducts = async (req,res) => {
+     try{
+
+        const products = Product.find({})
+
+        res.json({
+            products,
+            status : "ok",
+            message : "Success"
+        })
+
+     }
+     catch(error){
+        res.json({
+            message : "Error occured",
+            status : "fail"
+        })
+     }
+ }
