@@ -129,17 +129,19 @@ exports.addProduct = async (req,res) => {
 exports.addReview = async(req,res) =>{
 
     const { rating , comment , productId } = req.body
+    console.log(productId)
 
     try{
+
         const product = await Product.findById(productId)
 
         if(!product){
+
             res.json({
                 message : "Product not found",
                 status : "fail"
             })
         }
-
         const reviews = {
             user : req.user._id,
             name : req.user.name,

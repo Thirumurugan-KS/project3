@@ -13,7 +13,10 @@ cloudinary.config({
 
 exports.home = (req,res)=>{
     console.log("Hello")
-    res.send("Hello Test")
+    res.json({
+        status : "ok",
+        message : "successfully"
+    })
 }
 
 //signup
