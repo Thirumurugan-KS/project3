@@ -18,4 +18,7 @@ router.route("/password/reset/:token").post(resetForgetPassword)
 router.route("/userdashboard").get(isLogin ,userDashboard)
 router.route("/passwordupdate").post(isLogin , passwordUpdate)
 
+//Admin Route
+router.route("/admin/users").get(isLogin ,isAdmin ,adminUsers)
+
 module.exports = router
