@@ -128,3 +128,14 @@ exports.signIn = async (req,res) => {
     }
  
 }
+
+//signout
+
+exports.signOut = (req,res) => {
+
+    res.clearCookie("token")
+    res.json({
+        status : "ok",
+        success : "true"
+    })
+}
