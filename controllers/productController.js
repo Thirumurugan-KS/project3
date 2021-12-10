@@ -62,3 +62,59 @@ exports.addProduct = async (req,res) => {
         })
      }
  }
+
+ exports.showProduct = async (req,res) => {
+     const id = req.params.id
+     try{
+         const product = await Product.findById(id)
+
+         if(product){
+             res.json(product)
+         }
+         else
+         {
+            res.json({
+                message : "Product not found",
+                status : "fail"
+            })
+         }
+     }
+     catch(error){
+        res.json({
+            message : "Error occured",
+            status : "fail"
+        })
+     }
+
+ }
+
+
+
+ exports.deleteProduct = async (req,res) => {
+    const id = req.params.id
+    try{
+        const product = await Product.findById(id)
+
+        if(product){
+            await Product.deleteOne({ _id : id})
+            res.json({
+                message : "Product deleted successfully",
+                status : "ok"
+            })
+        }
+        else
+        {
+           res.json({
+               message : "Product not found",
+               status : "fail"
+           })
+        }
+    }
+    catch(error){
+       res.json({
+           message : "Error occured",
+           status : "fail"
+       })
+    }
+    console.log(id)
+}
