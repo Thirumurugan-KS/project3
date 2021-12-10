@@ -2,6 +2,7 @@ const cloudinary = require("cloudinary").v2
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel")
+const { mailSend } = require("../Utils/mailSender")
 
 cloudinary.config({
     cloud_name : 'dirl9qdbz',
@@ -123,7 +124,7 @@ exports.signIn = async (req,res) => {
     catch(error){
         res.json({
             message : "Error occured",
-            status : "ok"
+            status : "fail"
         })
     }
  
@@ -138,4 +139,46 @@ exports.signOut = (req,res) => {
         status : "ok",
         success : "true"
     })
+}
+
+
+exports.forgetPassword = async(req,res) => {
+
+   try{
+
+    const { email } = req.body
+
+    let user = await User.findOne({email})
+
+    if(!user){
+        res.json({
+            status : "fail",
+            message : "Mail not found"
+        })
+    }
+
+    forgetToken = await user.forgetToken()
+
+    await user.save()
+
+    let value = {
+        fromMail : "admin@ecom.com",
+        toMail : user.email,
+        subject : "Forget Password",
+        text : "Kindly follow below link to forget password",
+        html : `<a href='http://localhost:8080/password/reset/${forgetToken}'> <button>Click Me</button></a>`
+    }
+
+    let mail =  mailSend(value)
+
+    res.json({
+        status : "Ok"
+    })
+   }
+   catch(error){
+    res.json({
+        message : "Error occured",
+        status : "fail"
+    })
+   }
 }
