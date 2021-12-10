@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const User = require("../models/userModel");
 
 
-exports.isLogin = (req,res,next) => {
+exports.isLogin = async(req,res,next) => {
     if(!req.cookies.token){
         res.json({
             message : "Token not found",
@@ -21,7 +21,9 @@ exports.isLogin = (req,res,next) => {
         })
        }
        const id = userToken.id
+       const user = await User.findById(id)
        req.id = id
+       req.user = user
        next()
     }
 }
