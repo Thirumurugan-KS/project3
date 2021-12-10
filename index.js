@@ -7,6 +7,11 @@ app.get("/" , (req,res)=>{
     res.send("Hello")
 })
 
+app.get("/happy" , (req,res)=>{
+    console.log("Hello")
+    res.send("Hello")
+})
+
 app.listen(8000 , ()=>{
     console.log("Server is up")
 })
