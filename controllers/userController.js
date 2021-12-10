@@ -15,6 +15,7 @@ exports.home = (req,res)=>{
     res.send("Hello Test")
 }
 
+//signup
 exports.signUp = async (req,res) => {
     
     try{
