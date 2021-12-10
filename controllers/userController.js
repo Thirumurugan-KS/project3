@@ -338,3 +338,47 @@ catch(error){
        )
 }
 }
+
+
+exports.adminModifyUser = async(req,res) => {
+
+    const id = req.params.id
+
+    const { name , phonenumber } = req.body
+
+
+    try{
+        if(!(name && phonenumber)){
+
+            res.json({
+                message : "Provide all the fields",
+                status : "fail"
+            })
+
+        }
+        else{
+            const user = await User.findById(id)
+
+    if(!user){
+       res.json(
+        {message : "User not found",
+        status : "fail"}
+       )
+    }
+
+    user.name = name 
+
+    user.phonenumber = phonenumber
+    
+    await user.save( {validateBeforeSave : true})
+
+    res.json(user)
+        }
+}
+catch(error){
+    res.json(
+        {message : "User not found",
+        status : "fail"}
+       )
+}
+}
