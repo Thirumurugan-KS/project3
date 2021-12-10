@@ -30,9 +30,10 @@ exports.signUp = async (req,res) => {
             phonenumber : phonenumber
         })
         
-        
+        //todo
         if(user){
             if(req.files){
+
                 let cloud = await cloudinary.uploader.upload(req.files.photo.tempFilePath , {
                     folder : "profile"
                 })
