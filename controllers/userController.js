@@ -313,3 +313,28 @@ exports.adminUsers = async(req,res) => {
 
     res.json(users)
 }
+
+//Admin seeing specific user
+
+exports.adminUser = async(req,res) => {
+
+    const id = req.params.id
+
+    try{const user = await User.findById(id)
+
+    if(!user){
+       res.json(
+        {message : "User not found",
+        status : "fail"}
+       )
+    }
+
+    res.json(user)
+}
+catch(error){
+    res.json(
+        {message : "User not found",
+        status : "fail"}
+       )
+}
+}
