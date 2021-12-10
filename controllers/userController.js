@@ -2,7 +2,7 @@ const cloudinary = require("cloudinary").v2
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel")
-const { mailSend } = require("../Utils/mailSender")
+const { mailSend } = require("../utils/mailSender")
 
 cloudinary.config({
     cloud_name : 'dirl9qdbz',
