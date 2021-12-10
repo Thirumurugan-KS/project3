@@ -71,3 +71,55 @@ exports.signUp = async (req,res) => {
     }
 
  }
+
+ // signin
+exports.signIn = async (req,res) => {
+
+    const { email , password} = req.body
+
+    try{
+        if(email && password){
+
+        }
+        else{
+            const user = await User.findOne({ email })
+
+    if(!user){
+        res.json({
+            message : "User not found",
+            status : "fail"
+        })
+    }
+    else{
+
+    const isValid = await user.isPasswordValid(password , user.password)
+    if(!isValid){
+
+        res.json({
+            message : "Email or password is incorrect",
+            status : "fail"
+        })
+
+    }
+    else {
+        let token = user.getToken()
+        res.cookie("token" ,  token, {
+            httpOnly : true,
+            expiresIn : Date.now() * 3 * 60 * 60 * 1000
+        }).json({
+            status : "ok",
+            user : user,
+            token : token
+        })
+    }   
+    }
+        }
+    }
+    catch(error){
+        res.json({
+            message : "Error occured",
+            status : "fail"
+        })
+    }
+ 
+}
