@@ -21,8 +21,10 @@ app.use(fileUpload({
 
 
 const User = require("./routers/userRouter")
+const Product = require("./routers/productRouter")
 
 app.use("/api",User)
+app.use("/api",Product)
 
 app.listen(process.env.PORT || 8080 , ()=>{
     console.log("Server is up")
