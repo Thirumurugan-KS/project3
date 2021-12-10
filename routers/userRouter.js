@@ -8,9 +8,7 @@ router.route("/").get(home)
 
 
 //User Route
-router.route("/signup").post( (req,res)=>{
-    res.json(req.body)
-})
+router.route("/signup").post(signUp)
 
 
 module.exports = router

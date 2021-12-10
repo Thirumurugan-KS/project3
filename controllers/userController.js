@@ -18,7 +18,7 @@ exports.home = (req,res)=>{
 exports.signUp = async (req,res) => {
     
     try{
-        console.log(req.body)
+        res.json(req.body)
         const { name , email , password , phonenumber } = req.body
     if(name && email && password && phonenumber)
     {
