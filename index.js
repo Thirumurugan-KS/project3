@@ -12,6 +12,6 @@ app.get("/happy" , (req,res)=>{
     res.send("Hello")
 })
 
-app.listen(8000 , ()=>{
+app.listen(process.env.PORT || 8000 , ()=>{
     console.log("Server is up")
 })
