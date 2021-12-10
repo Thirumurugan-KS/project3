@@ -8,7 +8,7 @@ router.route("/").get(home)
 
 
 //User Route
-router.route("/signup").post(signUp)
+
 
 
 module.exports = router
