@@ -78,7 +78,12 @@ exports.signIn = async (req,res) => {
     const { email , password} = req.body
 
     try{
-        if(email && password){
+        if(!(email && password)){
+
+            res.json({
+                message : "Provide all the fields",
+                status : "fail"
+            })
 
         }
         else{
@@ -118,7 +123,7 @@ exports.signIn = async (req,res) => {
     catch(error){
         res.json({
             message : "Error occured",
-            status : "fail"
+            status : "ok"
         })
     }
  
