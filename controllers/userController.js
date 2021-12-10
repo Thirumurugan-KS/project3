@@ -182,3 +182,74 @@ exports.forgetPassword = async(req,res) => {
     })
    }
 }
+
+
+//reset forget password
+
+exports.resetForgetPassword = async(req,res) => {
+
+    const forgetToken = req.params.token
+    const { newPassword } = req.body
+
+   try{
+    if(!newPassword){
+
+        res.json({
+            message : "Fill all the fields",
+            status : "fail"
+        })
+    }
+    else{
+
+        const user = await User.findOne({ forgetPasswordToken : forgetToken })
+
+    if(!user){
+        res.json({
+            status : "fail"
+        })
+    }
+
+    if(user.forgetPasswordExpires < Date.now()){
+        res.json({
+            message : "Token Expires",
+            status : "fail"
+        })
+    }
+
+    user.password = newPassword
+
+    user.forgetPasswordToken = ""
+    user.forgetPasswordExpires = ""
+
+    await user.save()
+
+    res.json({
+        status : "ok"
+    })
+    }
+   }
+   catch(error){
+    res.json({
+        message : "Error occured",
+        status : "ok"
+    })
+   }
+    
+}
+
+
+exports.userDashboard = async(req,res) => {
+    
+    const user = await User.findById(req.id)
+    if(!user){
+        res.json({
+            message : "User not found",
+            status : "fail"
+        })
+    }
+
+    res.json({
+        user,
+        status : "ok"
+    })
+}
