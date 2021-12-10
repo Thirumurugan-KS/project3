@@ -45,6 +45,12 @@ exports.signUp = async (req,res) => {
         else{
             res.send("Already user present")
         }
+
+        res.json({
+            user,
+            message : "User saved",
+            status : "ok"
+        })
     }
     else{
         res.json({
