@@ -8,7 +8,9 @@ router.route("/").get(home)
 
 
 //User Route
-
+router.route("/signup", (req,res)=>{
+    res.send("sign up")
+})
 
 
 module.exports = router
