@@ -66,7 +66,7 @@ userSchema.methods.forgetToken =  function(){
 
     this.forgetPasswordToken = forgetToken 
 
-    this.forgetPasswordExpires = Date.now() + 20 * 60 * 60
+    this.forgetPasswordExpires = Date.now() + 20 * 60 * 1000
 
     console.log(this.forgetPasswordToken, this.forgetPasswordExpires)
 
