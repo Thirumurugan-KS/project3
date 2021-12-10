@@ -306,3 +306,10 @@ exports.passwordUpdate = async(req,res) => {
 
     }
 }
+
+exports.adminUsers = async(req,res) => {
+
+    const users = await User.find({})
+
+    res.json(users)
+}

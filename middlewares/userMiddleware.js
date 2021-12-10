@@ -25,3 +25,20 @@ exports.isLogin = (req,res,next) => {
        next()
     }
 }
+
+
+
+exports.isAdmin = async(req,res,next) => {
+    const id = req.id 
+    const user = await User.findById(id)
+
+    if(user.role!=="admin"){
+        res.json({
+            message : "Your Role is not matching",
+            status : "fail"
+        })
+    }
+
+    next()
+
+}

@@ -3,8 +3,8 @@ const router = express.Router()
 
 const {home , signUp , signIn , signOut ,
     forgetPassword , resetForgetPassword, userDashboard,
-    passwordUpdate} = require("../controllers/userController")
-    const { isLogin } = require("../middlewares/userMiddleware")
+    passwordUpdate , adminUsers} = require("../controllers/userController")
+    const { isLogin, isAdmin } = require("../middlewares/userMiddleware")
 //Home Route
 router.route("/").get(home)
 
