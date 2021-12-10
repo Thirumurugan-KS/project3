@@ -2,15 +2,9 @@ const express = require("express")
 
 const app = express()
 
-app.get("/" , (req,res)=>{
-    console.log("Hello")
-    res.send("Hello")
-})
+const User = require("./routers/userRouter")
 
-app.get("/happy" , (req,res)=>{
-    console.log("Hello")
-    res.send("Hello")
-})
+app.use("/api",User)
 
 app.listen(process.env.PORT || 8000 , ()=>{
     console.log("Server is up")
