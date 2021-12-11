@@ -12,7 +12,7 @@ router.route("/").get(home)
 //User Route
 router.route("/signup").post(signUp)
 router.route("/signin").post(signIn)
-router.route("/signout").get(signOut)
+router.route("/signout").get(isLogin , signOut)
 router.route("/forgetpassword").post(forgetPassword)
 router.route("/password/reset/:token").post(resetForgetPassword)
 router.route("/userdashboard").get(isLogin ,userDashboard)
