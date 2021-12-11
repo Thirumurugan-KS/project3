@@ -24,6 +24,7 @@ exports.signUp = async (req,res) => {
     
     try{
         const { name , email , password , phonenumber } = req.body
+        console.log(req.body)
     if(name && email && password && phonenumber)
     {
         
@@ -49,18 +50,23 @@ exports.signUp = async (req,res) => {
             }
         }
         else{
-            res.send("Already user present")
+            res.json({
+                message : "already",
+                status : "fail"
+            })
         }
+
+        console.log(user)
 
         res.json({
             user,
-            message : "User saved",
+            message : "save",
             status : "ok"
         })
     }
     else{
         res.json({
-            message : "Please fill all the fields",
+            message : "fill",
             status : "fail"
         })
 
@@ -69,7 +75,7 @@ exports.signUp = async (req,res) => {
     catch(error){
         
         res.json({
-            message : "Duplicate Email or Some error occurs",
+            message : "duplicate",
             status : "fail"
         })
     }
