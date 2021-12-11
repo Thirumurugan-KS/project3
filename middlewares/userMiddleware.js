@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 exports.isLogin = async(req,res,next) => {
     if(!req.cookies.token){
         res.json({
-            message : "Token not found",
+            message : "Kindly login after that log off",
             status : "fail"
         })
     }
@@ -16,7 +16,7 @@ exports.isLogin = async(req,res,next) => {
        console.log(Date.now())
        if(userToken.exp < Date.now()){
         res.json({
-            message : "Token expires",
+            message : "Kindly login again",
             status : "fail"
         })
        }

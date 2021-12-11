@@ -149,7 +149,7 @@ exports.signOut = (req,res) => {
     res.clearCookie("token")
     res.json({
         status : "ok",
-        success : "true"
+        message : "Signed out successfully"
     })
 }
 
