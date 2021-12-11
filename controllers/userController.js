@@ -51,7 +51,7 @@ exports.signUp = async (req,res) => {
         }
         else{
             res.json({
-                message : "already",
+                message : "Already Present",
                 status : "fail"
             })
         }
@@ -60,13 +60,13 @@ exports.signUp = async (req,res) => {
 
         res.json({
             user,
-            message : "save",
+            message : "User saved",
             status : "ok"
         })
     }
     else{
         res.json({
-            message : "fill",
+            message : "Fill all the fields",
             status : "fail"
         })
 
@@ -75,7 +75,7 @@ exports.signUp = async (req,res) => {
     catch(error){
         
         res.json({
-            message : "duplicate",
+            message : "Already Email present",
             status : "fail"
         })
     }
@@ -93,7 +93,7 @@ exports.signIn = async (req,res) => {
         if(!(email && password)){
 
             res.json({
-                message : "fill",
+                message : "Fill all the fields",
                 status : "fail"
             })
 
@@ -103,7 +103,7 @@ exports.signIn = async (req,res) => {
 
     if(!user){
         res.json({
-            message : "notfound",
+            message : "User not found",
             status : "fail"
         })
     }
@@ -113,7 +113,7 @@ exports.signIn = async (req,res) => {
     if(!isValid){
 
         res.json({
-            message : "incorrect",
+            message : "Email or password is incorrect",
             status : "fail"
         })
 
