@@ -6,7 +6,6 @@ exports.addProduct = async (req,res) => {
     try{
         const { name , category , stock , description , price , brand} = req.body
 
-        console.log(req.body)
 
     if(name && category && stock && description && price && brand)
     {

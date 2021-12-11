@@ -87,11 +87,13 @@ exports.signIn = async (req,res) => {
 
     const { email , password} = req.body
 
+    console.log(req.body)
+
     try{
         if(!(email && password)){
 
             res.json({
-                message : "Provide all the fields",
+                message : "fill",
                 status : "fail"
             })
 
@@ -101,7 +103,7 @@ exports.signIn = async (req,res) => {
 
     if(!user){
         res.json({
-            message : "User not found",
+            message : "notfound",
             status : "fail"
         })
     }
@@ -111,7 +113,7 @@ exports.signIn = async (req,res) => {
     if(!isValid){
 
         res.json({
-            message : "Email or password is incorrect",
+            message : "incorrect",
             status : "fail"
         })
 
@@ -124,7 +126,8 @@ exports.signIn = async (req,res) => {
         }).json({
             status : "ok",
             user : user,
-            token : token
+            token : token,
+            message : "signed"
         })
     }   
     }
@@ -132,7 +135,7 @@ exports.signIn = async (req,res) => {
     }
     catch(error){
         res.json({
-            message : "Error occured",
+            message : "error",
             status : "fail"
         })
     }
